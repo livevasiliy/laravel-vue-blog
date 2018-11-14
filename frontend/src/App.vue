@@ -2,23 +2,12 @@
   <div id="app">
     <img src="./assets/logo.png">
     <router-view/>
-    <ul>
-      <li v-for="article in articles" :key="article.id">
-        <h1>{{ article.title }}</h1>
-        <p>{{ article.body }}</p>
-      </li>
-    </ul>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'App',
-  computed: {
-    articles () {
-      return this.$store.getters.allArticles
-    }
-  }
+  name: 'App'
 }
 </script>
 
