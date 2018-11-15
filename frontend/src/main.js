@@ -4,6 +4,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import store from './store'
+import axios from 'axios'
 import 'jquery'
 import 'bootstrap'
 import 'popper.js'
@@ -17,6 +18,7 @@ new Vue({
   components: { App },
   template: '<App/>',
   created () {
-    this.$store.dispatch('fetchArticles')
+    this.$store.dispatch('fetchArticles');
+
   }
 });
