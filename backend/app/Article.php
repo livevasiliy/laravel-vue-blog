@@ -8,8 +8,6 @@ class Article extends Model
 {
     
     protected $fillable = [
-    	'token',
-		'userId',
         'title',
         'body'
 	];
