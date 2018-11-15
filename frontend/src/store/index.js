@@ -1,9 +1,12 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import articles from './article'
-Vue.use(Vuex)
+import article from './article'
+import shared from './shared'
+Vue.use(Vuex);
+
 export default new Vuex.Store({
   modules: {
-    articles
+    article,
+    shared
   }
 })

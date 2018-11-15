@@ -9,7 +9,9 @@ class Article extends Model
     
     protected $fillable = [
     	'token',
-		'userId'
+		'userId',
+        'title',
+        'body'
 	];
  
     public function users () {
