@@ -16,7 +16,7 @@ import 'argon-design-system-free/assets/css/argon.min.css'
  */
 import 'jquery'
 import 'popper.js'
-import 'bootstrap'
+import 'argon-design-system-free/assets/vendor/bootstrap/bootstrap.min'
 import 'argon-design-system-free/assets/js/argon.min'
 Vue.config.productionTip = false;
 
