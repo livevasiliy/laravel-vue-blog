@@ -22,12 +22,12 @@
         </router-link>
       </ul>
       <ul class="ml-auto navbar-nav">
-        <li class="nav-item">
-          <a href="#" class="nav-link">Login</a>
-        </li>
-        <li class="nav-item">
-          <a href="#" class="nav-link">Register</a>
-        </li>
+        <router-link to="/login" tag="li" class="nav-item cursor" active-class="active" exact>
+          <span class="nav-link">Login</span>
+        </router-link>
+        <router-link to="/register" tag="li" class="nav-item cursor" active-class="active" exact>
+          <span class="nav-link">Register</span>
+        </router-link>
       </ul>
     </div>
   </nav>

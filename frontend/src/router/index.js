@@ -6,6 +6,8 @@ import Register from '@/components/auth/Register'
 import ListArticle from '@/components/content/articles/ListArticle'
 import DetailArticle from '@/components/content/articles/DetailArticle'
 import Portfolio from '@/components/content/portfolio/Home'
+import Contacts from '@/components/content/contacts/Home'
+import AboutUs from '@/components/content/aboutus/Home'
 Vue.use(Router);
 
 export default new Router({
@@ -40,6 +42,16 @@ export default new Router({
       path: '/portfolio',
       name: 'Portfolio',
       component: Portfolio
+    },
+    {
+      path: '/contacts',
+      name: 'Contacts',
+      component: Contacts
+    },
+    {
+      path: '/aboutus',
+      name: 'About us',
+      component: AboutUs
     }
   ],
   mode: 'history'

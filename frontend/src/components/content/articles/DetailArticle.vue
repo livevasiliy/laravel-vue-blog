@@ -28,13 +28,13 @@
               <div class="row">
                 <div class="col-12">
                   <h3 class="card-text">Share this articles:</h3>
-                  <button class="btn btn-icon btn-2 btn-primary" type="button">
+                  <button class="btn btn-icon btn-2 btn-twitter" type="button">
                     <span class="btn-inner--icon"><i class="fab fa-twitter fa-lg"></i></span>
                   </button>
-                  <button class="btn btn-icon btn-2 btn-primary" type="button">
+                  <button class="btn btn-icon btn-2 btn-google-plus" type="button">
                     <span class="btn-inner--icon"><i class="fab fa-google-plus fa-lg"></i></span>
                   </button>
-                  <button class="btn btn-icon btn-2 btn-primary" type="button">
+                  <button class="btn btn-icon btn-2 btn-facebook" type="button">
                     <span class="btn-inner--icon"><i class="fab fa-facebook-f fa-lg"></i></span>
                   </button>
                   <button class="btn btn-icon btn-2 btn-primary" type="button">

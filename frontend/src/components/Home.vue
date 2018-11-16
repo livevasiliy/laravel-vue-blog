@@ -14,11 +14,11 @@
         <div class="col-4">
           <div class="card bg-secondary p-3">
             <img src="../assets/team/me.jpg" alt="My photo" class="card-img-top rounded-circle mx-auto"
-                 style="width: 175px; height: 200px;">
+                 style="width: 150px; height: 150px;">
             <div class="card-body">
               <h3 class="card-title">About me</h3>
               <p class="card-text">Hey there, I’m Vasiliy Pivovarov. I’m a web developer living in Astrakhan, Russian. I
-                am a fan of technology and design. You can
+                am a fan of technology and design. This you can
                 see my portfolio and read my blog.</p>
             </div>
           </div>
