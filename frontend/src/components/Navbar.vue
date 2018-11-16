@@ -1,8 +1,8 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-gradient-green">
     <router-link tag="a" class="navbar-brand" :to="{ name: 'Home' }">
       <img :src="logo" alt="Brand logo" style="height: 45px;">
-      <span>VueLaravel Blog</span>
+      <span class="ml-2">VueLaravel Blog</span>
     </router-link>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,6 +35,7 @@
 
 <script>
   import logo from '../assets/brand.png'
+
   export default {
     name: "Navbar",
     data() {
@@ -47,8 +48,20 @@
               'name': 'Home'
             },
             {
+              'path': '/portfolio',
+              'name': 'Portfolio'
+            },
+            {
               'path': '/articles',
               'name': 'Articles'
+            },
+            {
+              'path': '/about',
+              'name': 'About us'
+            },
+            {
+              'path': '/contacts',
+              'name': 'Contacts'
             }
           ]
       }

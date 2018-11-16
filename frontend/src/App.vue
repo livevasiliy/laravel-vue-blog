@@ -5,7 +5,7 @@
     </header>
     <router-view/>
     <footer>
-      <div class="container-fluid bg-gradient-info">
+      <div class="container-fluid bg-gradient-green">
         <div class="row">
           <div class="col-12 my-5 d-flex flex-column justify-content-center">
             <h2 class="text-white text-center">VueLaravel Blog</h2>
@@ -24,7 +24,7 @@
           </div>
         </div>
         <div class="col-12 justify-content-center d-flex">
-          <h5>Make with <i class="ni ni-favourite-28 text-danger"></i></h5>
+          <h5>Coding with <i class="ni ni-favourite-28 text-danger"></i> from Russian</h5>
         </div>
       </div>
     </footer>
@@ -33,18 +33,20 @@
 
 <script>
   import Navbar from './components/Navbar'
-  import logo from './assets/brand.png'
 
   export default {
     name: 'App',
     data() {
       return {
-        logo,
         links:
           [
             {
               'path': '/',
               'name': 'Home'
+            },
+            {
+              'path': '/portfolio',
+              'name': 'Portfolio'
             },
             {
               'path': '/articles',

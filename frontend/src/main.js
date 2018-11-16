@@ -8,7 +8,8 @@ import store from './store'
  * Styles
  */
 import 'argon-design-system-free/assets/vendor/nucleo/css/nucleo.css'
-import 'argon-design-system-free/assets/vendor/font-awesome/css/font-awesome.min.css'
+import '@fortawesome/fontawesome-free/css/all.min.css'
+import '@fortawesome/fontawesome-free/js/all.min'
 import 'argon-design-system-free/assets/css/argon.min.css'
 /***
  * Jquery, Popper.js, Bootstrap.js, Argon Theme. js
