@@ -1,6 +1,9 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <router-link tag="a" class="navbar-brand" :to="{ name: 'Home' }">Logo</router-link>
+    <router-link tag="a" class="navbar-brand" :to="{ name: 'Home' }">
+      <img :src="logo" alt="Brand logo" style="height: 45px;">
+      <span>VueLaravel Blog</span>
+    </router-link>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -11,7 +14,7 @@
           tag="li"
           :to="link.path"
           active-class="active"
-          class="nav-item"
+          class="nav-item cursor"
           v-for="(link, index) of links"
           :key="index"
           exact>
@@ -31,10 +34,12 @@
 </template>
 
 <script>
+  import logo from '../assets/brand.png'
   export default {
     name: "Navbar",
     data() {
       return {
+        logo: logo,
         links:
           [
             {
@@ -51,6 +56,6 @@
   }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 
 </style>

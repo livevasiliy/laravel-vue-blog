@@ -4,10 +4,19 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import store from './store'
-import axios from 'axios'
+/***
+ * Styles
+ */
+import 'argon-design-system-free/assets/vendor/nucleo/css/nucleo.css'
+import 'argon-design-system-free/assets/vendor/font-awesome/css/font-awesome.min.css'
+import 'argon-design-system-free/assets/css/argon.min.css'
+/***
+ * Jquery, Popper.js, Bootstrap.js, Argon Theme. js
+ */
 import 'jquery'
-import 'bootstrap'
 import 'popper.js'
+import 'bootstrap'
+import 'argon-design-system-free/assets/js/argon.min'
 Vue.config.productionTip = false;
 
 /* eslint-disable no-new */
@@ -18,7 +27,9 @@ new Vue({
   components: { App },
   template: '<App/>',
   created () {
-    this.$store.dispatch('fetchArticles');
-
+    /**
+     * Fetch articles from backend server
+     */
+    // this.$store.dispatch('fetchArticles');
   }
 });
