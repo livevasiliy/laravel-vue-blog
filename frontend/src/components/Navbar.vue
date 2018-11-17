@@ -66,16 +66,12 @@
               'name': 'Home'
             },
             {
-              'path': '/portfolio',
-              'name': 'Portfolio'
-            },
-            {
               'path': '/articles',
               'name': 'Articles'
             },
             {
-              'path': '/about',
-              'name': 'About us'
+              'path': '/aboutus',
+              'name': 'About me'
             },
             {
               'path': '/contacts',

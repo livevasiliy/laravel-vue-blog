@@ -61,19 +61,19 @@
                   </label>
                 </div>
                 <div class="text-center">
-                  <button type="button" class="btn btn-primary my-4">Sign in</button>
+                  <button type="submit" class="btn btn-primary my-4">Sign in</button>
                 </div>
               </form>
             </div>
           </div>
           <div class="row mt-3">
             <div class="col-6">
-              <a href="#" class="text-light">
+              <router-link to="Restore" class="text-light">
                 <small>Forgot password?</small>
-              </a>
+              </router-link>
             </div>
             <div class="col-6 text-right">
-              <router-link to="/register" class="text-light">
+              <router-link to="Register" class="text-light">
                 <small>Create new account</small>
               </router-link>
             </div>
