@@ -5,21 +5,34 @@
         <img :src="logo" alt="Brand logo" style="height: 45px;">
         <span class="ml-2">VueLaravel Blog</span>
       </router-link>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target="#navbarNav"
+              aria-controls="navbarNav"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+      >
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <div class="navbar-collapse-header">
           <div class="row">
             <div class="col-8 collapse-brand">
-              <router-link tag="a" to="home">
+              <router-link tag="a" :to="{ name: 'Home' }">
                 <img :src="logo">
                 <span class="ml-2">VueLaravel Blog</span>
               </router-link>
             </div>
             <div class="col-4 collapse-close">
-              <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <button type="button"
+                      class="navbar-toggler"
+                      data-toggle="collapse"
+                      data-target="#navbarNav"
+                      aria-controls="navbarNav"
+                      aria-expanded="false"
+                      aria-label="Toggle navigation"
+              >
                 <span></span>
                 <span></span>
               </button>
@@ -70,7 +83,7 @@
               'name': 'Articles'
             },
             {
-              'path': '/aboutus',
+              'path': '/aboutme',
               'name': 'About me'
             },
             {

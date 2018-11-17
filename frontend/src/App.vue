@@ -46,10 +46,6 @@
               'name': 'Home'
             },
             {
-              'path': '/portfolio',
-              'name': 'Portfolio'
-            },
-            {
               'path': '/articles',
               'name': 'Articles'
             },

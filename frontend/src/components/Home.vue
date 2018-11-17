@@ -6,12 +6,13 @@
     </appHeroBlock>
     <div class="container">
       <div class="row">
-        <div class="col-8">
+        <div class="col-12 col-sm-12 col-md-7 col-lg-8">
           <h2 class="display-3 text-center">Lasted articles</h2>
-          <appListArticle></appListArticle>
-          <appPagination></appPagination>
+          <app-lasted-article :articles="lastedArticles" :loading="loading"></app-lasted-article>
+          <h3 class="text-center">Find more articles ?</h3>
+          <router-link tag="button" :to="'/articles/'" class="btn btn-danger d-flex mx-auto my-4">Show all articles</router-link>
         </div>
-        <div class="col-4">
+        <div class="col-12 col-sm-12 col-md-5 col-lg-4">
           <div class="card bg-secondary p-3">
             <img src="../assets/team/me.jpg" alt="My photo" class="card-img-top rounded-circle mx-auto"
                  style="width: 150px; height: 150px;">
@@ -24,8 +25,8 @@
           </div>
           <div class="py-3">
             <h3>Categories</h3>
-            <ul class="nav flex-column">
-              <li v-for="(category, index) of categories" :key="index" class="nav-item py-1">
+            <ul class="nav flex-row flex-sm-column flex-md-column flex-lg-column d-flex justify-content-start">
+              <li v-for="(category, index) of categories" :key="index" class="nav-item py-1 flex-fill">
                 <a href="#" class="nav-link">
                   <span v-html="category.icon"></span>
                   {{ category.title }}
@@ -63,7 +64,7 @@
 
 <script>
   import HeroBlock from './content/HeroBlock'
-  import ListArticle from './content/articles/ListArticle'
+  import LastedArticle from './content/articles/LastedArticle'
   import Pagination from './shared/Pagination'
 
   export default {
@@ -91,14 +92,44 @@
             title: 'Laravel',
             icon: '<i class="fab fa-laravel fa-2x mr-2" style="color: #e6533d;"></i>'
           }
+        ],
+        lastedArticles: [
+          {
+            id: 1,
+            category: 'Developing',
+            title: 'How to make awesome project with Laravel + Vue.js',
+            body: 'This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.',
+            img: 'https://cdn-images-1.medium.com/max/2000/1*jFUgnkLTahkaBWSN8SLavg.png',
+            updated_at: '17.11.2018'
+          },
+          {
+            id: 2,
+            category: 'Developing',
+            title: 'How to make awesome project with Laravel + Vue.js',
+            body: 'This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.',
+            img: 'https://cdn-images-1.medium.com/max/2000/1*jFUgnkLTahkaBWSN8SLavg.png',
+            updated_at: '17.11.2018'
+          },
+          {
+            id: 3,
+            category: 'Developing',
+            title: 'How to make awesome project with Laravel + Vue.js',
+            body: 'This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.',
+            img: 'https://cdn-images-1.medium.com/max/2000/1*jFUgnkLTahkaBWSN8SLavg.png',
+            updated_at: '17.11.2018'
+          }
         ]
       }
-    }
-    ,
+    },
     components: {
       appHeroBlock: HeroBlock,
-      appListArticle: ListArticle,
+      appLastedArticle: LastedArticle,
       appPagination: Pagination
+    },
+    computed: {
+      loading() {
+        return this.$store.getters.loading;
+      }
     }
   }
 </script>
