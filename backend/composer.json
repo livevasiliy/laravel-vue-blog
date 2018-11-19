@@ -13,7 +13,9 @@
         "fideloper/proxy": "^4.0",
         "laravel/framework": "5.7.*",
         "laravel/passport": "^7.0",
-        "laravel/tinker": "^1.0"
+        "laravel/tinker": "^1.0",
+        "laravolt/avatar": "^2.1",
+        "spatie/flysystem-dropbox": "^1.0"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

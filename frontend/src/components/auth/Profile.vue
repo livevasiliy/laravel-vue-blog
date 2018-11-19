@@ -8,7 +8,7 @@
               <div class="col-lg-3 order-lg-2">
                 <div class="card-profile-image">
                   <a href="#">
-                    <img src="../../assets/team/me.jpg" class="rounded-circle">
+                    <img :src="user.avatar_url" class="rounded-circle">
                   </a>
                 </div>
               </div>
@@ -55,7 +55,6 @@
     },
     computed: {
       user() {
-        console.log(this.$store.getters.user);
         return this.$store.getters.user
       }
     }

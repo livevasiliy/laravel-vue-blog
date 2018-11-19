@@ -8,16 +8,16 @@ use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use App\User;
 
+use Illuminate\Support\Facades\Storage;
+use Laravolt\Avatar\Avatar;
+
 class PassportController extends Controller
 {
     /**
      * Create user
      *
-     * @param  [string] name
-     * @param  [string] email
-     * @param  [string] password
-     * @param  [string] password_confirmation
-     * @return [string] message
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse [string] message
      */
     public function signup(Request $request)
     {
@@ -32,6 +32,10 @@ class PassportController extends Controller
             'password' => bcrypt($request->password)
         ]);
         $user->save();
+
+        $avatar = (new Avatar)->create($user->name)->getImageObject()->encode('png');
+        Storage::put('avatars/'.$user->id.'/avatar.png', (string) $avatar);
+
         return response()->json([
             'message' => 'Successfully created user!'
         ], 201);
@@ -40,12 +44,8 @@ class PassportController extends Controller
     /**
      * Login user and create token
      *
-     * @param  [string] email
-     * @param  [string] password
-     * @param  [boolean] remember_me
-     * @return [string] access_token
-     * @return [string] token_type
-     * @return [string] expires_at
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse [string] access_token
      */
     public function login(Request $request)
     {
@@ -77,7 +77,8 @@ class PassportController extends Controller
     /**
      * Logout user (Revoke the token)
      *
-     * @return [string] message
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse [string] message
      */
     public function logout(Request $request)
     {
@@ -90,7 +91,8 @@ class PassportController extends Controller
     /**
      * Get the authenticated User
      *
-     * @return [json] user object
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse [json] user object
      */
     public function user(Request $request)
     {
