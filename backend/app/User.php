@@ -5,19 +5,26 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Storage;
 use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable
 {
     use HasApiTokens, Notifiable;
-    
+
+
+    /***
+     * @var array
+     */
+    protected $appends = ['avatar_url'];
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'avatar'
     ];
 
     /**
@@ -35,4 +42,15 @@ class User extends Authenticatable
     public function articles () {
     	return $this->hasMany (Article::class);
 	}
+
+    /***
+     *
+     * Get download URL to avatar user
+     *
+     * @return mixed
+     */
+    public function getAvatarUrlAttribute()
+    {
+        return asset(Storage::url('avatars/'.$this->id.'/'.$this->avatar));
+    }
 }

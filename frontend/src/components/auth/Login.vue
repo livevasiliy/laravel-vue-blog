@@ -24,7 +24,7 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                     </div>
-                    <input class="form-control" placeholder="Email" type="email">
+                    <input class="form-control" placeholder="Email" type="email" v-model="email">
                   </div>
                 </div>
                 <div class="form-group">
@@ -32,17 +32,17 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                     </div>
-                    <input class="form-control" placeholder="Password" type="password">
+                    <input class="form-control" placeholder="Password" type="password" v-model="password">
                   </div>
                 </div>
                 <div class="custom-control custom-control-alternative custom-checkbox">
-                  <input class="custom-control-input" id=" customCheckLogin" type="checkbox">
-                  <label class="custom-control-label" for=" customCheckLogin">
+                  <input class="custom-control-input" id="customCheckLogin" type="checkbox" v-model="remember_me">
+                  <label class="custom-control-label" for="customCheckLogin">
                     <span>Remember me</span>
                   </label>
                 </div>
                 <div class="text-center">
-                  <button type="submit" class="btn btn-primary my-4">Sign in</button>
+                  <button type="submit" class="btn btn-primary my-4" @click.prevent="onSumbit">Sign in</button>
                 </div>
               </form>
             </div>
@@ -66,23 +66,51 @@
 </template>
 
 <script>
-  import githubIcon from 'argon-design-system-free/assets/img/icons/common/github.svg'
-  import googleIcon from 'argon-design-system-free/assets/img/icons/common/google.svg'
-    export default {
-        name: "Login",
-      data () {
-          return {
-            githubIcon,
-            googleIcon
-          }
+  import { required, email } from 'vuelidate/lib/validators/'
+  export default {
+    name: "Login",
+    data() {
+      return {
+        email: '',
+        password: '',
+        remember_me: false,
+      }
+    },
+    validations: {
+      email: {
+        email,
+        required
+      },
+      password: {
+        required
+      }
+    },
+    methods: {
+      onSumbit() {
+        const user = {
+          email: this.email,
+          password: this.password,
+          remember_me: this.remember_me
+        };
+        this.$store.dispatch('loginUser', user)
+          .then(() => {
+            this.$router.push('/profile')
+          }).catch(() => {
+        })
+      }
+    },
+    computed: {
+      loading() {
+        return this.$store.getters.loading
       }
     }
+  }
 </script>
 
 <style scoped>
-@media screen and (min-width: 320px){
-  section.section.section-shaped.section-lg {
-    padding: 12rem 0rem;
+  @media screen and (min-width: 320px) {
+    section.section.section-shaped.section-lg {
+      padding: 12rem 0rem;
+    }
   }
-}
 </style>

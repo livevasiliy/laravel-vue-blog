@@ -18,13 +18,19 @@
               <div class="text-center text-muted mb-4">
                 <small>Or sign up with credentials</small>
               </div>
-              <form role="form">
+              <form role="form" ref="form">
                 <div class="form-group">
                   <div class="input-group input-group-alternative mb-3">
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
                     </div>
-                    <input class="form-control" placeholder="Name" type="text">
+                    <input
+                      class="form-control"
+                      placeholder="Name"
+                      type="text"
+                      name="name"
+                      v-model="name"
+                    >
                   </div>
                 </div>
                 <div class="form-group">
@@ -32,7 +38,13 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                     </div>
-                    <input class="form-control" placeholder="Email" type="email">
+                    <input
+                      class="form-control"
+                      placeholder="Email"
+                      type="email"
+                      name="email"
+                      v-model="email"
+                    >
                   </div>
                 </div>
                 <div class="form-group">
@@ -40,7 +52,29 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                     </div>
-                    <input class="form-control" placeholder="Password" type="password">
+                    <input
+                      class="form-control"
+                      placeholder="Password"
+                      type="password"
+                      name="password"
+                      required
+                      v-model="password"
+                    >
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                    </div>
+                    <input
+                      class="form-control"
+                      placeholder="Confirm password"
+                      type="password"
+                      name="password_confirmation"
+                      required
+                      v-model="password_confirmation"
+                    >
                   </div>
                 </div>
                 <div class="text-muted font-italic">
@@ -48,20 +82,11 @@
                     <span class="text-success font-weight-700">strong</span>
                   </small>
                 </div>
-                <div class="row my-4">
-                  <div class="col-12">
-                    <div class="custom-control custom-control-alternative custom-checkbox">
-                      <input class="custom-control-input" id="customCheckRegister" type="checkbox">
-                      <label class="custom-control-label" for="customCheckRegister">
-                          <span>I agree with the
-                            <a href="#">Privacy Policy</a>
-                          </span>
-                      </label>
-                    </div>
-                  </div>
-                </div>
                 <div class="text-center">
-                  <button type="button" class="btn btn-primary mt-4">Create account</button>
+                  <button
+                    type="button"
+                    class="btn btn-primary mt-4"
+                    @click.prevent="onSumbit">Create account</button>
                 </div>
               </form>
             </div>
@@ -73,14 +98,41 @@
 </template>
 
 <script>
-  import githubIcon from 'argon-design-system-free/assets/img/icons/common/github.svg'
-  import googleIcon from 'argon-design-system-free/assets/img/icons/common/google.svg'
+  import { required, email, sameAs } from 'vuelidate/lib/validators/'
   export default {
     name: "Register",
-    data () {
+    data() {
       return {
-        githubIcon,
-        googleIcon
+        name: '',
+        email: '',
+        password: '',
+        password_confirmation: '',
+        validate: false
+      }
+    },
+    validations: {
+      email: {
+        email,
+        required
+      },
+      password: {
+        required
+      },
+      password_confirmation: {
+        sameAsPassword: sameAs('password')
+      }
+    },
+    methods: {
+      onSumbit() {
+        const newUser = {
+          name: this.name,
+          email: this.email,
+          password: this.password,
+          password_confirmation: this.password_confirmation
+        };
+        this.$store.dispatch('registerUser', newUser).then(() => {
+          this.$router.push('/login')
+        }).catch(() => {})
       }
     }
   }

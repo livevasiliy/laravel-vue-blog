@@ -4,10 +4,12 @@ import Home from '@/components/Home'
 import Login from '@/components/auth/Login'
 import Register from '@/components/auth/Register'
 import Restore from '@/components/auth/Restore'
+import Profile from '@/components/auth/Profile'
 import ListArticle from '@/components/content/articles/ListArticle'
 import DetailArticle from '@/components/content/articles/DetailArticle'
 import Contacts from '@/components/content/contacts/Home'
-import AboutUs from '@/components/content/aboutus/Home'
+import AboutMe from '@/components/content/aboutme/Home'
+
 Vue.use(Router);
 
 export default new Router({
@@ -33,6 +35,11 @@ export default new Router({
       component: Restore
     },
     {
+      path: '/profile',
+      name: 'Profile',
+      component: Profile
+    },
+    {
       path: '/articles',
       name: 'ListArticles',
       component: ListArticle
@@ -49,9 +56,9 @@ export default new Router({
       component: Contacts
     },
     {
-      path: '/aboutus',
-      name: 'About us',
-      component: AboutUs
+      path: '/aboutme',
+      name: 'About me',
+      component: AboutMe
     }
   ],
   mode: 'history'

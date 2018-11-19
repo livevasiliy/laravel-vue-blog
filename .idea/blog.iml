@@ -8,6 +8,7 @@
       <excludeFolder url="file://$MODULE_DIR$/backend/vendor/barryvdh/laravel-cors" />
       <excludeFolder url="file://$MODULE_DIR$/backend/vendor/beyondcode/laravel-dump-server" />
       <excludeFolder url="file://$MODULE_DIR$/backend/vendor/composer" />
+      <excludeFolder url="file://$MODULE_DIR$/backend/vendor/danielstjules/stringy" />
       <excludeFolder url="file://$MODULE_DIR$/backend/vendor/defuse/php-encryption" />
       <excludeFolder url="file://$MODULE_DIR$/backend/vendor/dnoegel/php-xdg-base-dir" />
       <excludeFolder url="file://$MODULE_DIR$/backend/vendor/doctrine/inflector" />
@@ -24,11 +25,13 @@
       <excludeFolder url="file://$MODULE_DIR$/backend/vendor/guzzlehttp/promises" />
       <excludeFolder url="file://$MODULE_DIR$/backend/vendor/guzzlehttp/psr7" />
       <excludeFolder url="file://$MODULE_DIR$/backend/vendor/hamcrest/hamcrest-php" />
+      <excludeFolder url="file://$MODULE_DIR$/backend/vendor/intervention/image" />
       <excludeFolder url="file://$MODULE_DIR$/backend/vendor/jakub-onderka/php-console-color" />
       <excludeFolder url="file://$MODULE_DIR$/backend/vendor/jakub-onderka/php-console-highlighter" />
       <excludeFolder url="file://$MODULE_DIR$/backend/vendor/laravel/framework" />
       <excludeFolder url="file://$MODULE_DIR$/backend/vendor/laravel/passport" />
       <excludeFolder url="file://$MODULE_DIR$/backend/vendor/laravel/tinker" />
+      <excludeFolder url="file://$MODULE_DIR$/backend/vendor/laravolt/avatar" />
       <excludeFolder url="file://$MODULE_DIR$/backend/vendor/lcobucci/jwt" />
       <excludeFolder url="file://$MODULE_DIR$/backend/vendor/league/event" />
       <excludeFolder url="file://$MODULE_DIR$/backend/vendor/league/flysystem" />

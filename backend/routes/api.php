@@ -24,9 +24,25 @@ Route::apiResource('articles', 'API\ArticlesController');
  * Laravel Passport API for Authorizes
  *
 */
-Route::post('login', 'API\PassportController@login');
-Route::post('register', 'API\PassportController@register');
+Route::group([
+    'prefix' => 'auth'
+], function () {
+    Route::post('login', 'API\PassportController@login');
+    Route::post('register', 'API\PassportController@signup');
 
-Route::middleware('auth:api')->group(function () {
-    Route::get('user', 'API\PassportController@details');
-});
+    Route::group(['middleware' => ['auth:api', 'web']], function ()
+    {
+        Route::get('logout', 'API\PassportController@logout');
+        Route::get('user', 'API\PassportController@user');
+    });
+ });
+
+
+//Route::post('login', 'API\PassportController@login');
+//Route::post('register', 'API\PassportController@register');
+//$router->group(['middleware' => 'auth:api'], function () use ($router) {
+//    Route::get('logout', 'API\PassportController@logout');
+//});
+//Route::middleware('auth:api')->group(function () {
+//    Route::get('user', 'API\PassportController@details');
+//});
