@@ -13,13 +13,10 @@ class User extends Authenticatable
 {
     use HasApiTokens, Notifiable;
 
-<<<<<<< HEAD
 
     /***
      * @var array
      */
-=======
->>>>>>> 383e9099c4ccf962941f6a073d574d3aeb1d6102
     protected $appends = ['avatar_url'];
 
     /**
@@ -43,34 +40,20 @@ class User extends Authenticatable
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-<<<<<<< HEAD
-    public function articles () {
-    	return $this->hasMany (Article::class);
-	}
-
-    /***
-     *
-     * Get download URL to avatar user
-=======
     public function articles()
     {
         return $this->hasMany(Article::class);
     }
 
+
     /***
      *
      * Return download URL to avatar
->>>>>>> 383e9099c4ccf962941f6a073d574d3aeb1d6102
      *
      * @return mixed
      */
     public function getAvatarUrlAttribute()
     {
-<<<<<<< HEAD
-        return asset(Storage::url('avatars/'.$this->id.'/'.$this->avatar));
-=======
-        $file = Storage::url('avatars/' . $this->id . '/' . $this->avatar);
-        return asset($file);
->>>>>>> 383e9099c4ccf962941f6a073d574d3aeb1d6102
+        return asset(Storage::url('avatars/' . $this->id . '/' . $this->avatar));
     }
 }
