@@ -24,7 +24,7 @@ Route::apiResource('articles', 'API\ArticlesController');
  * Laravel Passport API for Authorizes
  *
 */
-<<<<<<< HEAD
+
 Route::group([
     'prefix' => 'auth'
 ], function () {
@@ -37,7 +37,7 @@ Route::group([
         Route::get('user', 'API\PassportController@user');
     });
  });
-=======
+
 
 Route::group([
     'prefix' => 'auth'
@@ -52,7 +52,7 @@ Route::group([
         Route::get('user', 'API\PassportController@user');
     });
 });
->>>>>>> 383e9099c4ccf962941f6a073d574d3aeb1d6102
+
 
 
 //Route::post('login', 'API\PassportController@login');
