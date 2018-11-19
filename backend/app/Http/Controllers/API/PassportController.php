@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use App\User;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 383e9099c4ccf962941f6a073d574d3aeb1d6102
 use Illuminate\Support\Facades\Storage;
 use Laravolt\Avatar\Avatar;
 
@@ -15,11 +19,16 @@ class PassportController extends Controller
     /**
      * Create user
      *
+<<<<<<< HEAD
      * @param  [string] name
      * @param  [string] email
      * @param  [string] password
      * @param  [string] password_confirmation
      * @return [string] message
+=======
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse [string] message
+>>>>>>> 383e9099c4ccf962941f6a073d574d3aeb1d6102
      */
     public function signup(Request $request)
     {
@@ -46,12 +55,17 @@ class PassportController extends Controller
     /**
      * Login user and create token
      *
+<<<<<<< HEAD
      * @param  [string] email
      * @param  [string] password
      * @param  [boolean] remember_me
      * @return [string] access_token
      * @return [string] token_type
      * @return [string] expires_at
+=======
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse [string] access_token
+>>>>>>> 383e9099c4ccf962941f6a073d574d3aeb1d6102
      */
     public function login(Request $request)
     {
@@ -83,7 +97,12 @@ class PassportController extends Controller
     /**
      * Logout user (Revoke the token)
      *
+<<<<<<< HEAD
      * @return [string] message
+=======
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse [string] message
+>>>>>>> 383e9099c4ccf962941f6a073d574d3aeb1d6102
      */
     public function logout(Request $request)
     {
@@ -96,7 +115,12 @@ class PassportController extends Controller
     /**
      * Get the authenticated User
      *
+<<<<<<< HEAD
      * @return [json] user object
+=======
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse [json] user object
+>>>>>>> 383e9099c4ccf962941f6a073d574d3aeb1d6102
      */
     public function user(Request $request)
     {

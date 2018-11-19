@@ -4,6 +4,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import store from './store'
+import axios from 'axios';
 /***
  * Styles
  */
@@ -21,6 +22,7 @@ import 'jquery'
 import 'popper.js'
 import 'argon-design-system-free/assets/vendor/bootstrap/bootstrap.min'
 import 'argon-design-system-free/assets/js/argon.min'
+
 Vue.config.productionTip = false;
 
 /* eslint-disable no-new */
@@ -28,9 +30,10 @@ new Vue({
   el: '#app',
   router,
   store,
-  components: { App },
+  components: {App},
   template: '<App/>',
-  created () {
+  created() {
+
     /**
      * Fetch articles from backend server
      */

@@ -74,6 +74,8 @@
       <excludeFolder url="file://$MODULE_DIR$/backend/vendor/sebastian/recursion-context" />
       <excludeFolder url="file://$MODULE_DIR$/backend/vendor/sebastian/resource-operations" />
       <excludeFolder url="file://$MODULE_DIR$/backend/vendor/sebastian/version" />
+      <excludeFolder url="file://$MODULE_DIR$/backend/vendor/spatie/dropbox-api" />
+      <excludeFolder url="file://$MODULE_DIR$/backend/vendor/spatie/flysystem-dropbox" />
       <excludeFolder url="file://$MODULE_DIR$/backend/vendor/swiftmailer/swiftmailer" />
       <excludeFolder url="file://$MODULE_DIR$/backend/vendor/symfony/console" />
       <excludeFolder url="file://$MODULE_DIR$/backend/vendor/symfony/css-selector" />
