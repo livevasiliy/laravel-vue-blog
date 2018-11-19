@@ -131,7 +131,7 @@
           password_confirmation: this.password_confirmation
         };
         this.$store.dispatch('registerUser', newUser).then(() => {
-          this.$router.push('/')
+          this.$router.push('/login')
         }).catch(() => {})
       }
     }

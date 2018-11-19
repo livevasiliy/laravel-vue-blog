@@ -81,17 +81,17 @@ export default {
         throw error;
       }
     },
-    async detailsUser({commit}, {token}) {
+    async detailsUser({commit, getters}) {
       commit('clearError');
       commit('setLoading', true);
       try {
         let data = await axios({
           method: 'get',
-          url: 'http://127.0.0.1:8000/api/user',
+          url: 'http://127.0.0.1:8000/api/auth/user',
           headers: {
             'Access-Control-Allow-Origin': '*',
             'Accept': 'application/json',
-            'Authorization': 'Bearer ' + token,
+            'Authorization': 'Bearer ' + getters.user.access_token,
           }
         }).then(response => {
           return response.data

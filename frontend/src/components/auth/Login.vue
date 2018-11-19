@@ -24,7 +24,7 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                     </div>
-                    <input class="form-control" placeholder="Email" type="email" v-model.lazy="email">
+                    <input class="form-control" placeholder="Email" type="email" v-model="email">
                   </div>
                 </div>
                 <div class="form-group">
@@ -32,11 +32,11 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                     </div>
-                    <input class="form-control" placeholder="Password" type="password" v-model.lazy="password">
+                    <input class="form-control" placeholder="Password" type="password" v-model="password">
                   </div>
                 </div>
                 <div class="custom-control custom-control-alternative custom-checkbox">
-                  <input class="custom-control-input" id="customCheckLogin" type="checkbox" v-model.lazy="remember_me">
+                  <input class="custom-control-input" id="customCheckLogin" type="checkbox" v-model="remember_me">
                   <label class="custom-control-label" for="customCheckLogin">
                     <span>Remember me</span>
                   </label>
@@ -66,14 +66,23 @@
 </template>
 
 <script>
-
+  import { required, email } from 'vuelidate/lib/validators/'
   export default {
     name: "Login",
     data() {
       return {
         email: '',
         password: '',
-        remember_me: '',
+        remember_me: false,
+      }
+    },
+    validations: {
+      email: {
+        email,
+        required
+      },
+      password: {
+        required
       }
     },
     methods: {
@@ -85,7 +94,7 @@
         };
         this.$store.dispatch('loginUser', user)
           .then(() => {
-            this.$router.push('/')
+            this.$router.push('/profile')
           }).catch(() => {
         })
       }

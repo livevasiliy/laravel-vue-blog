@@ -32,7 +32,7 @@ Route::group([
     Route::post('register', 'API\PassportController@signup');
 
     Route::group([
-        'middleware' => 'auth:api'
+        'middleware' => ['auth:api', 'web']
     ], function() {
         Route::get('logout', 'API\PassportController@logout');
         Route::get('user', 'API\PassportController@user');
