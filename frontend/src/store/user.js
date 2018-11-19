@@ -18,13 +18,13 @@ export default {
     }
   },
   actions: {
-    async registerUser({commit}, {name, email, password}) {
+    async registerUser({commit}, {name, email, password, password_confirmation}) {
       commit('clearError');
       commit('setLoading', true);
       try {
         let token = await axios({
           method: 'post',
-          url: 'http://127.0.0.1:8000/api/register',
+          url: 'http://127.0.0.1:8000/api/auth/register',
           headers: {
             'Access-Control-Allow-Origin': '*',
             'Content-Type': 'application/json'
@@ -32,7 +32,8 @@ export default {
           data: {
             name,
             email,
-            password
+            password,
+            password_confirmation
           }
         }).then(response => {
           return response.data;
@@ -49,20 +50,21 @@ export default {
         throw error;
       }
     },
-    async loginUser({commit}, {email, password}) {
+    async loginUser({commit}, {email, password, remember_me}) {
       commit('clearError', false);
       commit('setLoading', true);
       try {
         let token = await axios({
           method: 'post',
-          url: 'http://127.0.0.1:8000/api/login',
+          url: 'http://127.0.0.1:8000/api/auth/login',
           headers: {
             'Access-Control-Allow-Origin': '*',
             'Content-Type': 'application/json'
           },
           data: {
             email,
-            password
+            password,
+            remember_me
           }
         }).then(response => {
           return response.data

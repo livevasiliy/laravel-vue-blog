@@ -20,6 +20,7 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
         \App\Http\Middleware\TrustProxies::class,
 		\Barryvdh\Cors\HandleCors::class,
+        \Laravel\Passport\Http\Middleware\CreateFreshApiToken::class
     ];
 
     /**
@@ -36,12 +37,14 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
 //            \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            \Laravel\Passport\Http\Middleware\CreateFreshApiToken::class
         ],
 
         'api' => [
             'throttle:60,1',
             'bindings',
 			\Barryvdh\Cors\HandleCors::class,
+            \Laravel\Passport\Http\Middleware\CreateFreshApiToken::class
         ],
     ];
 

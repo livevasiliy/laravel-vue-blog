@@ -7,7 +7,7 @@ import Restore from '@/components/auth/Restore'
 import ListArticle from '@/components/content/articles/ListArticle'
 import DetailArticle from '@/components/content/articles/DetailArticle'
 import Contacts from '@/components/content/contacts/Home'
-import AboutUs from '@/components/content/aboutus/Home'
+import AboutMe from '@/components/content/aboutme/Home'
 Vue.use(Router);
 
 export default new Router({
@@ -49,9 +49,9 @@ export default new Router({
       component: Contacts
     },
     {
-      path: '/aboutus',
-      name: 'About us',
-      component: AboutUs
+      path: '/aboutme',
+      name: 'About me',
+      component: AboutMe
     }
   ],
   mode: 'history'
