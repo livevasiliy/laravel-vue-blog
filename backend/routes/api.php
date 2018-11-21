@@ -24,36 +24,38 @@ Route::apiResource('articles', 'API\ArticlesController');
  * Laravel Passport API for Authorizes
  *
 */
+//
+//Route::group([
+//    'prefix' => 'auth'
+//], function () {
+//    Route::post('login', 'API\PassportController@login');
+//    Route::post('register', 'API\PassportController@signup');
+//
+//    Route::group(['middleware' => ['auth:api', 'web']], function ()
+//    {
+//        Route::get('logout', 'API\PassportController@logout');
+//        Route::get('user', 'API\PassportController@user');
+//    });
+// });
 
-Route::group([
-    'prefix' => 'auth'
-], function () {
-    Route::post('login', 'API\PassportController@login');
-    Route::post('register', 'API\PassportController@signup');
 
-    Route::group(['middleware' => ['auth:api', 'web']], function ()
-    {
-        Route::get('logout', 'API\PassportController@logout');
-        Route::get('user', 'API\PassportController@user');
-    });
- });
+/**
+ * Laravel JWT API Routers
+ */
+Route::post('login', 'ApiController@login');
+Route::post('register', 'ApiController@register');
 
+Route::group(['middleware' => 'auth.jwt'], function () {
+    Route::get('logout', 'ApiController@logout');
 
-Route::group([
-    'prefix' => 'auth'
-], function () {
-    Route::post('login', 'API\PassportController@login');
-    Route::post('register', 'API\PassportController@signup');
+    Route::get('user', 'ApiController@getAuthUser');
 
-    Route::group([
-        'middleware' => ['auth:api', 'web']
-    ], function() {
-        Route::get('logout', 'API\PassportController@logout');
-        Route::get('user', 'API\PassportController@user');
-    });
+    Route::get('articles', 'API\ArticlesController@index');
+    Route::get('articles/{id}', 'API\ArticleController@show');
+    Route::post('articles', 'API\ArticleController@store');
+    Route::put('articles/{id}', 'API\ArticleController@update');
+    Route::delete('articles/{id}', 'API\ArticleController@destroy');
 });
-
-
 
 //Route::post('login', 'API\PassportController@login');
 //Route::post('register', 'API\PassportController@register');

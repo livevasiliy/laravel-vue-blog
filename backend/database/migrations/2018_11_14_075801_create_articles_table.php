@@ -20,7 +20,10 @@ class CreateArticlesTable extends Migration
             $table->text('body');
             $table->timestamps();
 
-            $table->foreign('userId')->references('id')->on('users');
+            $table->foreign('userId')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
         });
     }
 
