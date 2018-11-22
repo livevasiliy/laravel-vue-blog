@@ -83,4 +83,19 @@ class ApiController extends Controller
 
         return response()->json(['user' => $user]);
     }
+
+    public function refresh()
+    {
+        return $this->respondWithToken(JWTAuth::refresh());
+    }
+
+    protected function respondWithToken($token)
+    {
+        return response()->json([
+            'success' => true,
+            'token' => $token,
+            'token_type' => 'bearer',
+            'expires_in' => JWTAuth::factory()->getTTL() * 60
+        ]);
+    }
 }
