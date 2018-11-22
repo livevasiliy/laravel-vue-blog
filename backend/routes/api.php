@@ -24,7 +24,9 @@ Route::group(['middleware' => 'auth.jwt'], function () {
     Route::get('logout', 'ApiController@logout');
     Route::post('refresh', 'ApiController@refresh');
     Route::get('user', 'ApiController@getAuthUser');
-
+    Route::get('dashboard', function (){
+        return response()->json(['data' => 'Test data']);
+    });
     Route::get('articles', 'ArticleController@index');
     Route::get('articles/{id}', 'ArticleController@show');
     Route::post('articles', 'ArticleController@store');
