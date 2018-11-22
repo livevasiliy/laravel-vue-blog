@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,30 +17,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResource('articles', 'API\ArticlesController');
-
-/*
- * Laravel Passport API for Authorizes
- *
-*/
-//
-//Route::group([
-//    'prefix' => 'auth'
-//], function () {
-//    Route::post('login', 'API\PassportController@login');
-//    Route::post('register', 'API\PassportController@signup');
-//
-//    Route::group(['middleware' => ['auth:api', 'web']], function ()
-//    {
-//        Route::get('logout', 'API\PassportController@logout');
-//        Route::get('user', 'API\PassportController@user');
-//    });
-// });
-
-
-/**
- * Laravel JWT API Routers
- */
 Route::post('login', 'ApiController@login');
 Route::post('register', 'ApiController@register');
 
@@ -50,18 +25,9 @@ Route::group(['middleware' => 'auth.jwt'], function () {
 
     Route::get('user', 'ApiController@getAuthUser');
 
-    Route::get('articles', 'API\ArticlesController@index');
-    Route::get('articles/{id}', 'API\ArticleController@show');
-    Route::post('articles', 'API\ArticleController@store');
-    Route::put('articles/{id}', 'API\ArticleController@update');
-    Route::delete('articles/{id}', 'API\ArticleController@destroy');
+    Route::get('articles', 'ArticleController@index');
+    Route::get('articles/{id}', 'ArticleController@show');
+    Route::post('articles', 'ArticleController@store');
+    Route::put('articles/{id}', 'ArticleController@update');
+    Route::delete('articles/{id}', 'ArticleController@destroy');
 });
-
-//Route::post('login', 'API\PassportController@login');
-//Route::post('register', 'API\PassportController@register');
-//$router->group(['middleware' => 'auth:api'], function () use ($router) {
-//    Route::get('logout', 'API\PassportController@logout');
-//});
-//Route::middleware('auth:api')->group(function () {
-//    Route::get('user', 'API\PassportController@details');
-//});
