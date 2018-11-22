@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\RegisterAuthRequest;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 
@@ -23,6 +24,9 @@ class ApiController extends Controller
         if ($this->loginAfterSignUp) {
             return $this->login($request);
         }
+
+        $avatar = (new Avatar)->create($user->name)->getImageObject()->encode('png');
+        Storage::put('avatars/'.$user->id.'/avatar.png', (string) $avatar);
 
         return response()->json([
             'success' => true,
