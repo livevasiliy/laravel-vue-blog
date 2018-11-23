@@ -4,7 +4,8 @@ namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Facades\Storage;
+
+use Storage;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class User extends Authenticatable implements JWTSubject
@@ -70,7 +71,7 @@ class User extends Authenticatable implements JWTSubject
      */
     public function getAvatarUrlAttribute()
     {
-        $file = Storage::url('avatars/' . $this->id . '/' . $this->avatar);
+        $file = Storage::url('avatars/'.$this->id.'/'.$this->avatar);
         return asset($file);
     }
 }

@@ -5,14 +5,19 @@ namespace App\Http\Controllers;
 use App\Http\Requests\RegisterAuthRequest;
 use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use JWTAuth;
+use Avatar;
+use Storage;
 use Tymon\JWTAuth\Exceptions\JWTException;
 
 class ApiController extends Controller
 {
     public $loginAfterSignUp = true;
 
+    /**
+     * @param RegisterAuthRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function register(RegisterAuthRequest $request)
     {
         $user = new User();
@@ -25,8 +30,8 @@ class ApiController extends Controller
             return $this->login($request);
         }
 
-        $avatar = (new Avatar)->create($user->name)->getImageObject()->encode('png');
-        Storage::put('avatars/'.$user->id.'/avatar.png', (string) $avatar);
+        $avatar = Avatar::create($user->name)->save('avatar.png');
+        Storage::put('avatars/'.$user->id.'/avatar.png', $avatar);
 
         return response()->json([
             'success' => true,
