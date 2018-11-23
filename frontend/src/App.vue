@@ -34,7 +34,7 @@
 
 <script>
   import Navbar from './components/Navbar'
-
+  import axios from 'axios'
   export default {
     name: 'App',
     data() {
@@ -62,6 +62,26 @@
     },
     components: {
       appNavbar: Navbar
+    },
+    created() {
+      if (localStorage.token){
+        axios.get('/api/user', {
+          headers: {
+            Authorization: 'Bearer ' + localStorage.getItem('token')
+          },
+          params: {
+            token: localStorage.getItem('token')
+          }
+        }).then(response => {
+          this.$store.commit('loginUser');
+        }).catch(error => {
+          if (error.response.status === 401 || error.response.status === 403) {
+            this.$store.commit('logoutUser');
+            localStorage.setItem('token', '');
+            this.$router.push({name: 'Login'})
+          }
+        });
+      }
     }
   }
 </script>
