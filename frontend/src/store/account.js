@@ -8,6 +8,14 @@ export default {
     },
     logoutUser(state) {
       state.isLoggedIn = false;
+    },
+    registerUser(state) {
+      state.isLoggedIn = true;
+    }
+  },
+  getters: {
+    isLoggedIn(state) {
+      return state.isLoggedIn
     }
   }
 }

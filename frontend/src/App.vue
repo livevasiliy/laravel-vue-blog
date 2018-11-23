@@ -74,6 +74,7 @@
           }
         }).then(response => {
           this.$store.commit('loginUser');
+          localStorage.setItem('account', JSON.stringify(response.data));
         }).catch(error => {
           if (error.response.status === 401 || error.response.status === 403) {
             this.$store.commit('logoutUser');

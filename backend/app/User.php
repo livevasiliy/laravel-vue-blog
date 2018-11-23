@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-use Storage;
+use Illuminate\Support\Facades\Storage;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class User extends Authenticatable implements JWTSubject
@@ -14,6 +14,10 @@ class User extends Authenticatable implements JWTSubject
 
 
     protected $appends = ['avatar_url'];
+    public function getAvatarUrlAttribute()
+    {
+        return asset(Storage::url('avatars/'.$this->id.'/'.$this->avatar));
+    }
 
     /**
      * The attributes that are mass assignable.
@@ -21,7 +25,7 @@ class User extends Authenticatable implements JWTSubject
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'avatar'
+        'name', 'email', 'password', 'avatar',
     ];
 
     /**
@@ -61,17 +65,5 @@ class User extends Authenticatable implements JWTSubject
     public function articles()
     {
         return $this->hasMany(Article::class);
-    }
-
-    /***
-     *
-     * Return download URL to avatar
-     *
-     * @return mixed
-     */
-    public function getAvatarUrlAttribute()
-    {
-        $file = Storage::url('avatars/'.$this->id.'/'.$this->avatar);
-        return asset($file);
     }
 }

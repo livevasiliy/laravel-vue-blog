@@ -51,12 +51,20 @@
             <span class="nav-link">{{ link.name }}</span>
           </router-link>
         </ul>
-        <ul class="ml-auto navbar-nav">
+        <ul class="ml-auto navbar-nav" v-if="!isLoggedIn">
           <router-link to="/login" tag="li" class="nav-item cursor" active-class="active" exact>
             <span class="nav-link">Login</span>
           </router-link>
           <router-link to="/register" tag="li" class="nav-item cursor" active-class="active" exact>
             <span class="nav-link">Register</span>
+          </router-link>
+        </ul>
+        <ul class="ml-auto navbar-nav" v-else>
+          <router-link :to="'profile/' + user.user.id">
+            <span class="nav-link">{{ user.user.name }}</span>
+          </router-link>
+          <router-link :to="{ name: 'Logout'}">
+            <span class="nav-link">Log out</span>
           </router-link>
         </ul>
       </div>
@@ -91,6 +99,14 @@
               'name': 'Contacts'
             }
           ]
+      }
+    },
+    computed: {
+      user() {
+        return JSON.parse(localStorage.getItem('account'));
+      },
+      isLoggedIn(){
+        return this.$store.getters.isLoggedIn;
       }
     }
   }

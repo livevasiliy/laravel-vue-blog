@@ -77,6 +77,6 @@ return [
         // 'foreground' (same as foreground color)
         // 'background' (same as background color)
         // or any valid hex ('#aabbcc')
-        'color' => 'background',
+        'color' => 'foreground',
     ],
 ];

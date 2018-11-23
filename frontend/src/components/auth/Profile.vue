@@ -8,7 +8,7 @@
               <div class="col-lg-3 order-lg-2">
                 <div class="card-profile-image">
                   <a href="#">
-                    <img :src="user.avatar_url" class="rounded-circle">
+                    <img :src="user.user.avatar_url" class="rounded-circle">
                   </a>
                 </div>
               </div>
@@ -36,8 +36,8 @@
               </div>
             </div>
             <div class="text-center mt-5">
-              <h3>{{ user.name }}
-                <span class="font-weight-light">, {{ user.id }}</span>
+              <h3>{{ user.user.name }}
+                <span class="font-weight-light">, {{ user.user.id }}</span>
               </h3>
             </div>
           </div>
@@ -50,12 +50,11 @@
 <script>
   export default {
     name: "Profile",
-    created() {
-      this.$store.dispatch('detailsUser', this.$store.getters.user.access_token)
-    },
     computed: {
       user() {
-        return this.$store.getters.user
+        console.log(JSON.parse(localStorage.getItem('account')));
+        return JSON.parse(localStorage.getItem('account'));
+
       }
     }
   }

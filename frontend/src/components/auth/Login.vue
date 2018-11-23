@@ -79,10 +79,10 @@
         }).then(response => {
           this.$store.commit('loginUser');
           localStorage.setItem('token', response.data.token);
-          this.$router.push({name: 'Dashboard'});
+          this.$router.push({ name: 'Home'})
         }).catch(error => {
           this.loginError = true;
-          throw error.message
+          throw error.message;
         })
       }
     },
