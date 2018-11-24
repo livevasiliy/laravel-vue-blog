@@ -2,12 +2,10 @@
 
 namespace App;
 
-use Illuminate\Support\Facades\Response;
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+
 use Illuminate\Support\Facades\Storage;
-use Laravel\Passport\HasApiTokens;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class User extends Authenticatable implements JWTSubject
@@ -15,10 +13,11 @@ class User extends Authenticatable implements JWTSubject
     use Notifiable;
 
 
-    /***
-     * @var array
-     */
     protected $appends = ['avatar_url'];
+    public function getAvatarUrlAttribute()
+    {
+        return asset(Storage::url('avatars/'.$this->id.'/'.$this->avatar));
+    }
 
     /**
      * The attributes that are mass assignable.
@@ -26,7 +25,7 @@ class User extends Authenticatable implements JWTSubject
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'avatar'
+        'name', 'email', 'password', 'avatar',
     ];
 
     /**
@@ -37,26 +36,6 @@ class User extends Authenticatable implements JWTSubject
     protected $hidden = [
         'password', 'remember_token',
     ];
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function articles()
-    {
-        return $this->hasMany(Article::class);
-    }
-
-
-    /***
-     *
-     * Return download URL to avatar
-     *
-     * @return mixed
-     */
-    public function getAvatarUrlAttribute()
-    {
-        return asset(Storage::url('avatars/' . $this->id . '/' . $this->avatar));
-    }
 
     /**
      * Get the identifier that will be stored in the subject claim of the JWT.
@@ -76,5 +55,15 @@ class User extends Authenticatable implements JWTSubject
     public function getJWTCustomClaims()
     {
         return [];
+    }
+
+    /**
+     * Get all the associated products
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function articles()
+    {
+        return $this->hasMany(Article::class);
     }
 }

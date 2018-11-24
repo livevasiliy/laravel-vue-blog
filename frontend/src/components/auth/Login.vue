@@ -18,13 +18,13 @@
               <div class="text-center text-muted mb-4">
                 <small>Sign in with credentials</small>
               </div>
-              <form role="form">
+              <form role="form" @submit.prevent="submitLogin">
                 <div class="form-group mb-3">
                   <div class="input-group input-group-alternative">
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                     </div>
-                    <input class="form-control" placeholder="Email" type="email" v-model="email">
+                    <input class="form-control" placeholder="Email" type="email" id="email" v-model="email">
                   </div>
                 </div>
                 <div class="form-group">
@@ -35,14 +35,8 @@
                     <input class="form-control" placeholder="Password" type="password" v-model="password">
                   </div>
                 </div>
-                <div class="custom-control custom-control-alternative custom-checkbox">
-                  <input class="custom-control-input" id="customCheckLogin" type="checkbox" v-model="remember_me">
-                  <label class="custom-control-label" for="customCheckLogin">
-                    <span>Remember me</span>
-                  </label>
-                </div>
                 <div class="text-center">
-                  <button type="submit" class="btn btn-primary my-4" @click.prevent="onSumbit">Sign in</button>
+                  <button type="submit" class="btn btn-primary my-4">Sign in</button>
                 </div>
               </form>
             </div>
@@ -66,36 +60,29 @@
 </template>
 
 <script>
-  import { required, email } from 'vuelidate/lib/validators/'
+  import axios from 'axios'
   export default {
     name: "Login",
     data() {
       return {
         email: '',
         password: '',
-        remember_me: false,
-      }
-    },
-    validations: {
-      email: {
-        email,
-        required
-      },
-      password: {
-        required
+        loginError: false,
       }
     },
     methods: {
-      onSumbit() {
-        const user = {
+      submitLogin() {
+        this.loginError = false;
+        axios.post('/api/login', {
           email: this.email,
-          password: this.password,
-          remember_me: this.remember_me
-        };
-        this.$store.dispatch('loginUser', user)
-          .then(() => {
-            this.$router.push('/profile')
-          }).catch(() => {
+          password: this.password
+        }).then(response => {
+          this.$store.commit('loginUser');
+          localStorage.setItem('token', response.data.token);
+          this.$router.push({ name: 'Home'})
+        }).catch(error => {
+          this.loginError = true;
+          throw error.message;
         })
       }
     },

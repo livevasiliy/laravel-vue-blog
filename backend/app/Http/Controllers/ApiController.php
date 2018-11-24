@@ -7,13 +7,16 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use JWTAuth;
-use Laravolt\Avatar\Avatar;
 use Tymon\JWTAuth\Exceptions\JWTException;
 
 class ApiController extends Controller
 {
     public $loginAfterSignUp = true;
 
+    /**
+     * @param RegisterAuthRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function register(RegisterAuthRequest $request)
     {
         $user = new User();
@@ -22,12 +25,15 @@ class ApiController extends Controller
         $user->password = bcrypt($request->password);
         $user->save();
 
-        $avatar = Avatar::create($user->name)->getImageObject()->encode('png');
+        $avatar = (new \Laravolt\Avatar\Avatar)->create($user->name)->getImageObject()->encode('png');
         Storage::put('avatars/'.$user->id.'/avatar.png', (string) $avatar);
 
         if ($this->loginAfterSignUp) {
             return $this->login($request);
         }
+
+        $avatar = Avatar::create($user->name)->getImageObject()->encode('png');
+        Storage::put('avatars/'.$user->id.'/avatar.png', (string) $avatar);
 
         return response()->json([
             'success' => true,
@@ -83,5 +89,20 @@ class ApiController extends Controller
         $user = JWTAuth::authenticate($request->token);
 
         return response()->json(['user' => $user]);
+    }
+
+    public function refresh()
+    {
+        return $this->respondWithToken(JWTAuth::refresh());
+    }
+
+    protected function respondWithToken($token)
+    {
+        return response()->json([
+            'success' => true,
+            'token' => $token,
+            'token_type' => 'bearer',
+            'expires_in' => JWTAuth::factory()->getTTL() * 60
+        ]);
     }
 }

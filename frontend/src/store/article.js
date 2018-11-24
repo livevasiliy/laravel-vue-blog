@@ -21,7 +21,7 @@ export default {
       try {
         let data = await axios({
           method: 'get',
-          url: 'http://127.0.0.1:8000/api/articles',
+          url: '/api/articles',
           headers: {
             'Access-Control-Allow-Origin': '*',
             'Content-Type': 'application/json'
@@ -38,6 +38,24 @@ export default {
         commit('setError', error.message);
         commit('setLoading', false);
         throw error
+      }
+    },
+    async getSingleArticle({commit}, {id}) {
+      commit('clearError');
+      commit('setLoading', true);
+      try {
+        let data = await axios.get('/api/article/' + id)
+          .then(response => {
+          return response.data;
+        }).catch(error => {
+          throw error.message
+          });
+        commit('loadArticles', data);
+        commit('setLoading', false);
+      } catch (error) {
+        commit('setError', error.message);
+        commit('setLoading', false);
+        throw error.message
       }
     }
   }

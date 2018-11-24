@@ -18,7 +18,7 @@
               <div class="text-center text-muted mb-4">
                 <small>Or sign up with credentials</small>
               </div>
-              <form role="form" ref="form">
+              <form role="form" @submit.prevent="submitRegister">
                 <div class="form-group">
                   <div class="input-group input-group-alternative mb-3">
                     <div class="input-group-prepend">
@@ -62,31 +62,27 @@
                     >
                   </div>
                 </div>
-                <div class="form-group">
-                  <div class="input-group input-group-alternative">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
-                    </div>
-                    <input
-                      class="form-control"
-                      placeholder="Confirm password"
-                      type="password"
-                      name="password_confirmation"
-                      required
-                      v-model="password_confirmation"
-                    >
-                  </div>
-                </div>
-                <div class="text-muted font-italic">
-                  <small>password strength:
-                    <span class="text-success font-weight-700">strong</span>
-                  </small>
-                </div>
+                <!--<div class="form-group">-->
+                  <!--<div class="input-group input-group-alternative">-->
+                    <!--<div class="input-group-prepend">-->
+                      <!--<span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>-->
+                    <!--</div>-->
+                    <!--<input-->
+                      <!--class="form-control"-->
+                      <!--placeholder="Confirm password"-->
+                      <!--type="password"-->
+                      <!--name="password_confirmation"-->
+                      <!--required-->
+                      <!--v-model="password_confirmation"-->
+                    <!--&gt;-->
+                  <!--</div>-->
+                <!--</div>-->
+
                 <div class="text-center">
                   <button
-                    type="button"
+                    type="submit"
                     class="btn btn-primary mt-4"
-                    @click.prevent="onSumbit">Create account</button>
+                    >Create account</button>
                 </div>
               </form>
             </div>
@@ -98,7 +94,7 @@
 </template>
 
 <script>
-  import { required, email, sameAs } from 'vuelidate/lib/validators/'
+  import axios from 'axios'
   export default {
     name: "Register",
     data() {
@@ -106,33 +102,28 @@
         name: '',
         email: '',
         password: '',
-        password_confirmation: '',
-        validate: false
-      }
-    },
-    validations: {
-      email: {
-        email,
-        required
-      },
-      password: {
-        required
-      },
-      password_confirmation: {
-        sameAsPassword: sameAs('password')
+        registerError: false
       }
     },
     methods: {
-      onSumbit() {
-        const newUser = {
-          name: this.name,
-          email: this.email,
-          password: this.password,
-          password_confirmation: this.password_confirmation
-        };
-        this.$store.dispatch('registerUser', newUser).then(() => {
-          this.$router.push('/login')
-        }).catch(() => {})
+      submitRegister() {
+        this.registerError = false;
+        axios({
+          method: 'post',
+          url: '/api/register',
+          data: {
+            email: this.email,
+            name: this.name,
+            password: this.password
+          }
+        }).then(response => {
+          this.$store.commit('registerUser');
+          localStorage.setItem('token', response.data.token);
+          this.$router.push({name: 'Home'});
+        }).catch(error => {
+          this.registerError = true;
+          throw error.message;
+        })
       }
     }
   }
