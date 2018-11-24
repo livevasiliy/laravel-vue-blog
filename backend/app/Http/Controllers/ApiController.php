@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\RegisterAuthRequest;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use JWTAuth;
+use Laravolt\Avatar\Avatar;
 use Tymon\JWTAuth\Exceptions\JWTException;
 
 class ApiController extends Controller
@@ -19,6 +21,9 @@ class ApiController extends Controller
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
         $user->save();
+
+        $avatar = Avatar::create($user->name)->getImageObject()->encode('png');
+        Storage::put('avatars/'.$user->id.'/avatar.png', (string) $avatar);
 
         if ($this->loginAfterSignUp) {
             return $this->login($request);
