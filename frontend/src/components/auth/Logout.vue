@@ -1,8 +1,5 @@
 <template>
   <div>
-    <header>
-      <appNavbar></appNavbar>
-    </header>
   </div>
 </template>
 
@@ -15,6 +12,7 @@
     },
     mounted() {
       localStorage.removeItem('token');
+      localStorage.removeItem('account');
       this.$store.commit('logoutUser');
       this.$router.push({name: 'Login'})
     }

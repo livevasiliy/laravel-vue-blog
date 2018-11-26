@@ -61,25 +61,43 @@
           </router-link>
         </ul>
         <ul class="ml-auto navbar-nav" v-else>
-<<<<<<< HEAD
-          <router-link
-            tag="li"
-            :to="{ name: 'Dashboard'}"
-            active-class="active"
-            class="nav-item cursor"
-            exact
-          >
-            <span class="nav-link">Dashboard</span>
-          </router-link>
-=======
-          <img :src="user.user.avatar_url" alt="avatar" style="width: 45px; height: 45px;" class="rounded-circle">
->>>>>>> 7f024a538030448cd48b2d522260b4ea95f7bfc2
-          <router-link :to="'profile/' + user.user.id">
-            <span class="nav-link">{{ user.user.name }}</span>
-          </router-link>
-          <router-link :to="{ name: 'Logout'}">
-            <span class="nav-link">Log out</span>
-          </router-link>
+          <li class="nav-item dropdown">
+            <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+               aria-expanded="false">
+              <div class="media align-items-center">
+                <span class="avatar avatar-sm rounded-circle" style="width: 55px; height: 55px;">
+                  <img alt="Image placeholder" :src="user.user.avatar_url" style="width: 55px; height: 55px;">
+                </span>
+                <div class="media-body ml-2 d-none d-lg-block">
+                  <span class="mb-0 text-sm  font-weight-bold">{{ user.user.name }}</span>
+                </div>
+              </div>
+            </a>
+            <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
+              <div class=" dropdown-header noti-title">
+                <h6 class="text-overflow m-0">Welcome!</h6>
+              </div>
+              <router-link tag="a" :to="'/profile/' + user.user.id" class="dropdown-item cursor" active-class="active" exact>
+                <i class="ni ni-single-02"></i>
+                <span>My profile</span>
+              </router-link>
+              <router-link
+                :to="{ name: 'Dashboard'}"
+                tag="li"
+                active-class="active"
+                class="dropdown-item"
+                exact
+              >
+                <i class="ni ni-settings-gear-65"></i>
+                <span>Dashboard</span>
+              </router-link>
+              <div class="dropdown-divider"></div>
+              <router-link tag="a" to="/logout" class="dropdown-item cursor">
+                <i class="ni ni-user-run"></i>
+                <span>Logout</span>
+              </router-link>
+            </div>
+          </li>
         </ul>
       </div>
     </div>
