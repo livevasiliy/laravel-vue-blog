@@ -1,71 +1,79 @@
 <template>
-  <main>
-    <appHeroBlock>
-      <template slot="title">Welcome to my blog</template>
-      <template slot="subtitle">About web technology, Vue.js & Laravel</template>
-    </appHeroBlock>
-    <div class="container">
-      <div class="row">
-        <div class="col-12 col-sm-12 col-md-7 col-lg-8">
-          <h2 class="display-3 text-center">Lasted articles</h2>
-          <app-lasted-article :articles="lastedArticles" :loading="loading"></app-lasted-article>
-          <h3 class="text-center">Find more articles ?</h3>
-          <router-link tag="button" :to="'/articles/'" class="btn btn-danger d-flex mx-auto my-4">Show all articles</router-link>
-        </div>
-        <div class="col-12 col-sm-12 col-md-5 col-lg-4">
-          <div class="card bg-secondary p-3">
-            <img src="../assets/team/me.jpg" alt="My photo" class="card-img-top rounded-circle mx-auto"
-                 style="width: 150px; height: 150px;">
-            <div class="card-body">
-              <h3 class="card-title">About me</h3>
-              <p class="card-text">Hey there, I’m Vasiliy Pivovarov. I’m a web developer living in Astrakhan, Russian. I
-                am a fan of technology and design. This you can
-                see my portfolio and read my blog.</p>
-            </div>
+  <div>
+    <header>
+      <app-navbar></app-navbar>
+    </header>
+    <main>
+      <appHeroBlock>
+        <template slot="title">Welcome to my blog</template>
+        <template slot="subtitle">About web technology, Vue.js & Laravel</template>
+      </appHeroBlock>
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-7 col-lg-8">
+            <h2 class="display-3 text-center">Lasted articles</h2>
+            <app-lasted-article :articles="lastedArticles" :loading="loading"></app-lasted-article>
+            <h3 class="text-center">Find more articles ?</h3>
+            <router-link tag="button" :to="'/articles/'" class="btn btn-danger d-flex mx-auto my-4">Show all articles
+            </router-link>
           </div>
-          <div class="py-3">
-            <h3>Categories</h3>
-            <ul class="nav flex-row flex-sm-column flex-md-column flex-lg-column d-flex justify-content-start">
-              <li v-for="(category, index) of categories" :key="index" class="nav-item py-1 flex-fill">
-                <a href="#" class="nav-link">
-                  <span v-html="category.icon"></span>
-                  {{ category.title }}
-                </a>
-              </li>
-            </ul>
+          <div class="col-12 col-sm-12 col-md-5 col-lg-4">
+            <div class="card bg-secondary p-3">
+              <img src="../assets/team/me.jpg" alt="My photo" class="card-img-top rounded-circle mx-auto"
+                   style="width: 150px; height: 150px;">
+              <div class="card-body">
+                <h3 class="card-title">About me</h3>
+                <p class="card-text">Hey there, I’m Vasiliy Pivovarov. I’m a web developer living in Astrakhan, Russian.
+                  I
+                  am a fan of technology and design. This you can
+                  see my portfolio and read my blog.</p>
+              </div>
+            </div>
+            <div class="py-3">
+              <h3>Categories</h3>
+              <ul class="nav flex-row flex-sm-column flex-md-column flex-lg-column d-flex justify-content-start">
+                <li v-for="(category, index) of categories" :key="index" class="nav-item py-1 flex-fill">
+                  <a href="#" class="nav-link">
+                    <span v-html="category.icon"></span>
+                    {{ category.title }}
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-12 p-5 bg-gradient-danger ">
-          <h2 class="font-weight-bold py-4 mb-3 text-white">Subscribe to new articles</h2>
-          <form>
-            <div class="form-row">
-              <div class="col-md-4 col-lg-3 py-4">
-                <div class="form-group">
-                  <input type="email" class="form-control form-control-alternative" id="exampleFormControlInput1"
-                         placeholder="name@example.com">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12 p-5 bg-gradient-danger ">
+            <h2 class="font-weight-bold py-4 mb-3 text-white">Subscribe to new articles</h2>
+            <form>
+              <div class="form-row">
+                <div class="col-md-4 col-lg-3 py-4">
+                  <div class="form-group">
+                    <input type="email" class="form-control form-control-alternative" id="exampleFormControlInput1"
+                           placeholder="name@example.com">
+                  </div>
+                </div>
+                <div class="col-md-6 py-4">
+                  <div class="form-group">
+                    <button type="submit" class="btn btn-success">Subscribe</button>
+                  </div>
                 </div>
               </div>
-              <div class="col-md-6 py-4">
-                <div class="form-group">
-                  <button type="submit" class="btn btn-success">Subscribe</button>
-                </div>
-              </div>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
-  </main>
+    </main>
+  </div>
 </template>
 
 <script>
   import HeroBlock from './content/HeroBlock'
   import LastedArticle from './content/articles/LastedArticle'
   import Pagination from './shared/Pagination'
+  import Navbar from './Navbar'
 
   export default {
     name: 'Home',
@@ -124,7 +132,8 @@
     components: {
       appHeroBlock: HeroBlock,
       appLastedArticle: LastedArticle,
-      appPagination: Pagination
+      appPagination: Pagination,
+      appNavbar: Navbar
     },
     computed: {
       loading() {

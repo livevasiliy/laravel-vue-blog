@@ -1,8 +1,5 @@
 <template>
   <div id="app">
-    <header>
-      <app-navbar></app-navbar>
-    </header>
     <router-view/>
     <footer class="footer-sticky">
         <div class="container-fluid bg-gradient-green">

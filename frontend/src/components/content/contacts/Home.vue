@@ -1,4 +1,8 @@
 <template>
+  <div>
+    <header>
+      <appNavbar></appNavbar>
+    </header>
     <div class="container py-5 contact-form">
       <h2 class="display-3 text-center">Contact us</h2>
       <div class="row d-flex justify-content-center">
@@ -6,7 +10,8 @@
           <form>
             <div class="form-group">
               <label for="exampleInputEmail1">Email address</label>
-              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                     placeholder="Enter email">
             </div>
             <div class="form-group">
               <label for="message">Message</label>
@@ -17,16 +22,22 @@
         </div>
       </div>
     </div>
+  </div>
 </template>
 
 <script>
-    export default {
-        name: "Home"
+  import Navbar from '../../Navbar'
+
+  export default {
+    name: "Home",
+    components: {
+      appNavbar: Navbar
     }
+  }
 </script>
 
 <style lang="scss" scoped>
-.contact-form {
-  margin-top: 100px;
-}
+  .contact-form {
+    margin-top: 100px;
+  }
 </style>

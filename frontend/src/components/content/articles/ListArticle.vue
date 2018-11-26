@@ -1,10 +1,16 @@
 <template>
-  <div class="container">
-    <div class="row">
-      <div class="col-12">
-        <router-view></router-view>
-        <appArticle :articles="articles" :loading="loading"></appArticle>
-        <appPagination></appPagination>
+  <div>
+    <header>
+      <appNavbar></appNavbar>
+    </header>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <router-view></router-view>
+          <appArticle :articles="articles" :loading="loading"></appArticle>
+          <appPagination></appPagination>
+        </div>
       </div>
     </div>
   </div>
@@ -14,12 +20,14 @@
 
   import Article from './Article'
   import Pagination from '../../shared/Pagination'
+  import Navbar from '../../Navbar'
 
   export default {
     name: "ListArticle",
     components: {
       appArticle: Article,
-      appPagination: Pagination
+      appPagination: Pagination,
+      appNavbar: Navbar
     },
     data() {
       return {

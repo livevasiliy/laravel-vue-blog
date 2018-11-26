@@ -1,4 +1,8 @@
 <template>
+  <div>
+    <header>
+      <appNavbar></appNavbar>
+    </header>
   <section class="section section-shaped section-lg">
     <div class="shape shape-style-1 bg-gradient-default">
       <span></span>
@@ -91,12 +95,17 @@
       </div>
     </div>
   </section>
+  </div>
 </template>
 
 <script>
+  import Navbar from '../Navbar'
   import axios from 'axios'
   export default {
     name: "Register",
+    components: {
+      appNavbar: Navbar
+    },
     data() {
       return {
         name: '',

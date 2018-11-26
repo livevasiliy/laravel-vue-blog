@@ -40,6 +40,7 @@
           </div>
         </div>
         <ul class="navbar-nav">
+
           <router-link
             tag="li"
             :to="link.path"
@@ -60,6 +61,15 @@
           </router-link>
         </ul>
         <ul class="ml-auto navbar-nav" v-else>
+          <router-link
+            tag="li"
+            :to="{ name: 'Dashboard'}"
+            active-class="active"
+            class="nav-item cursor"
+            exact
+          >
+            <span class="nav-link">Dashboard</span>
+          </router-link>
           <router-link :to="'profile/' + user.user.id">
             <span class="nav-link">{{ user.user.name }}</span>
           </router-link>
@@ -105,7 +115,7 @@
       user() {
         return JSON.parse(localStorage.getItem('account'));
       },
-      isLoggedIn(){
+      isLoggedIn() {
         return this.$store.getters.isLoggedIn;
       }
     }

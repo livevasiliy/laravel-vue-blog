@@ -1,4 +1,8 @@
 <template>
+  <div>
+    <header>
+      <app-navbar></app-navbar>
+    </header>
   <section class="section section-shaped section-lg">
     <div class="shape shape-style-1 bg-gradient-default">
       <span></span>
@@ -57,9 +61,11 @@
       </div>
     </div>
   </section>
+  </div>
 </template>
 
 <script>
+  import Navbar from '../Navbar'
   import axios from 'axios'
   export default {
     name: "Login",
@@ -90,6 +96,9 @@
       loading() {
         return this.$store.getters.loading
       }
+    },
+    components: {
+      appNavbar: Navbar
     }
   }
 </script>

@@ -1,4 +1,8 @@
 <template>
+  <div>
+    <header>
+      <appNavbar></appNavbar>
+    </header>
   <main class="profile-page">
     <section class="section">
       <div class="container">
@@ -45,17 +49,21 @@
       </div>
     </section>
   </main>
+  </div>
 </template>
 
 <script>
+  import Navbar from '../Navbar'
   export default {
     name: "Profile",
     computed: {
       user() {
         console.log(JSON.parse(localStorage.getItem('account')));
         return JSON.parse(localStorage.getItem('account'));
-
       }
+    },
+    components: {
+      appNavbar: Navbar
     }
   }
 </script>

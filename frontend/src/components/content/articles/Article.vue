@@ -19,7 +19,7 @@
         <router-link tag="button" class="btn btn-success" :to="'/articles/' + article.id">Read</router-link>
       </div>
     </div>
-    <div v-else-if="!loading && articles.length === 0" class="notification">
+    <div v-else-if="!loading && articles.length === 0" class="alert alert-danger">
       <h1>Array is empty</h1>
     </div>
     <div v-else>
