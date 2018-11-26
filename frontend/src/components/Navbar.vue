@@ -61,6 +61,7 @@
           </router-link>
         </ul>
         <ul class="ml-auto navbar-nav" v-else>
+<<<<<<< HEAD
           <router-link
             tag="li"
             :to="{ name: 'Dashboard'}"
@@ -70,6 +71,9 @@
           >
             <span class="nav-link">Dashboard</span>
           </router-link>
+=======
+          <img :src="user.user.avatar_url" alt="avatar" style="width: 45px; height: 45px;" class="rounded-circle">
+>>>>>>> 7f024a538030448cd48b2d522260b4ea95f7bfc2
           <router-link :to="'profile/' + user.user.id">
             <span class="nav-link">{{ user.user.name }}</span>
           </router-link>

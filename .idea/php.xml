@@ -97,6 +97,10 @@
       <path value="$PROJECT_DIR$/backend/vendor/psr/http-message" />
       <path value="$PROJECT_DIR$/backend/vendor/intervention/image" />
       <path value="$PROJECT_DIR$/backend/vendor/laravolt/avatar" />
+      <path value="$PROJECT_DIR$/backend/vendor/namshi/jose" />
+      <path value="$PROJECT_DIR$/backend/vendor/tymon/jwt-auth" />
+      <path value="$PROJECT_DIR$/backend/vendor/symfony/polyfill-php56" />
+      <path value="$PROJECT_DIR$/backend/vendor/symfony/polyfill-util" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.1" />

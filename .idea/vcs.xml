@@ -3,5 +3,9 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/backend/vendor/namshi/jose" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/backend/vendor/symfony/polyfill-php56" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/backend/vendor/symfony/polyfill-util" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/backend/vendor/tymon/jwt-auth" vcs="Git" />
   </component>
 </project>
