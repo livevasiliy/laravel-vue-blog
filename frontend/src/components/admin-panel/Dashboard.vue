@@ -50,7 +50,12 @@
                       {{ article.updated_at }}
                     </td>
                     <td>
-                      <router-link tag="a" :to="{ name: `/dashboard/${article.id}/edit`}" class="cursor btn btn-link" exact>
+                      <router-link
+                        tag="a"
+                        :to="`/dashboard/post/${article.id}/edit`"
+                        class="cursor btn btn-link"
+                        exact
+                        >
                         <span class="mx-2">
                         <i class="fas fa-edit fa-2x"></i>
                         Edit

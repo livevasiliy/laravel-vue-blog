@@ -11,6 +11,7 @@ import DetailArticle from '@/components/content/articles/DetailArticle'
 import Contacts from '@/components/content/contacts/Home'
 import AboutMe from '@/components/content/aboutme/Home'
 import Dashboard from '@/components/admin-panel/Dashboard'
+import EditPost from '@/components/admin-panel/EditPost'
 Vue.use(Router);
 
 export default new Router({
@@ -82,9 +83,14 @@ export default new Router({
           next({name: 'Dashboard'});
           return;
         }
-
         next();
       }
+    },
+    {
+      path: '/dashboard/post/:id/edit',
+      name: 'EditPost',
+      component: EditPost,
+      props: true
     }
   ],
   mode: 'history'
