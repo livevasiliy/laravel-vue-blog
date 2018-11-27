@@ -21,29 +21,45 @@
               </div>
               <div class="table-responsive">
                 <!-- Projects table -->
-                <table class="table align-items-center table-flush">
+                <table class="table align-items-center table-flush table-hover">
                   <thead class="thead-light">
                   <tr>
-                    <th scope="col">Article name</th>
+                    <th scope="col">ID</th>
+                    <th scope="col">Name article</th>
                     <th scope="col">Author</th>
                     <th scope="col">Date created</th>
+                    <th scope="col">Date updated</th>
                     <th scope="col">Actions</th>
                   </tr>
                   </thead>
                   <tbody>
-                  <tr>
-                    <th scope="row">
-                      /argon/
-                    </th>
+                  <tr v-for="article of articles" :key="article.id">
                     <td>
-                      4,569
+                      {{ article.id }}
                     </td>
                     <td>
-                      340
+                      {{ article.title }}
                     </td>
                     <td>
-                      <i class="fas fa-edit">Edit</i>
-                      <i class="fas fa-eraser"><a href="#">Delete</a></i>
+                      {{ article.user_id }}
+                    </td>
+                    <td>
+                      {{ article.created_at }}
+                    </td>
+                    <td>
+                      {{ article.updated_at }}
+                    </td>
+                    <td>
+                      <router-link tag="a" :to="{ name: `/dashboard/${article.id}/edit`}" class="cursor btn btn-link" exact>
+                        <span class="mx-2">
+                        <i class="fas fa-edit fa-2x"></i>
+                        Edit
+                      </span>
+                      </router-link>
+                      <a @click="deleteArticle" class="cursor btn btn-link">
+                        <i class="fas fa-eraser fa-2x"></i>
+                        Delete
+                      </a>
                     </td>
                   </tr>
                   </tbody>
@@ -63,24 +79,27 @@
   import axios from 'axios'
   import logo from '../../assets/brand.png'
   import Navbar from '../Navbar'
+
   export default {
     name: "Dashboard",
     data() {
       return {
-        data: 'nothing',
         logo: logo,
       }
+    },
+    methods: {
+      deleteArticle(){}
     },
     components: {
       appNavbar: Navbar
     },
     mounted() {
-      axios.get('/api/dashboard', {
+      axios.get('/api/articles', {
         headers: {
           Authorization: 'Bearer ' + localStorage.getItem('token')
         }
       }).then(response => {
-        this.data = response.data.data
+        localStorage.setItem('articles', JSON.stringify(response.data));
       }).catch(error => {
         throw error.message
       });
@@ -88,6 +107,9 @@
     computed: {
       user() {
         return JSON.parse(localStorage.getItem('account'))
+      },
+      articles() {
+        return JSON.parse(localStorage.getItem('articles'))
       }
     }
   }

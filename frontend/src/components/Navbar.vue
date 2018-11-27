@@ -77,7 +77,12 @@
               <div class=" dropdown-header noti-title">
                 <h6 class="text-overflow m-0">Welcome!</h6>
               </div>
-              <router-link tag="a" :to="'/profile/' + user.user.id" class="dropdown-item cursor" active-class="active" exact>
+              <router-link
+                tag="a"
+                :to="'/profile/' + user.user.id"
+                class="dropdown-item cursor"
+                active-class="active"
+                exact>
                 <i class="ni ni-single-02"></i>
                 <span>My profile</span>
               </router-link>
@@ -85,7 +90,7 @@
                 :to="{ name: 'Dashboard'}"
                 tag="li"
                 active-class="active"
-                class="dropdown-item"
+                class="dropdown-item cursor"
                 exact
               >
                 <i class="ni ni-settings-gear-65"></i>

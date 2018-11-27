@@ -19,7 +19,7 @@ class ArticleController extends Controller
     {
         return $this->user
             ->articles()
-            ->get(['title', 'body'])
+            ->get(['title', 'body', 'id', 'user_id', 'created_at', 'updated_at'])
             ->toArray();
     }
 
