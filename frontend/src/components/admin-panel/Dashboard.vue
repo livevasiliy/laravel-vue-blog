@@ -14,8 +14,12 @@
             <div class="card shadow">
               <div class="card-header border-0">
                 <div class="row align-items-center">
-                  <div class="col">
+                  <div class="col-8">
                     <h3 class="mb-0">Lasted add articles</h3>
+                  </div>
+                  <div class="col-4">
+                    <router-link tag="button" class="d-flex ml-auto btn btn-success" :to="{ name: 'AddNewPost' }"><span>Add new post</span>
+                    </router-link>
                   </div>
                 </div>
               </div>
@@ -55,7 +59,7 @@
                         :to="{ name: 'EditPost', params: {postId: article.id} }"
                         class="cursor btn btn-link"
                         exact
-                        >
+                      >
                         <span class="mx-2">
                         <i class="fas fa-edit fa-2x"></i>
                         Edit
@@ -72,9 +76,7 @@
               </div>
             </div>
           </div>
-
         </div>
-
       </div>
     </div>
   </div>
@@ -93,7 +95,8 @@
       }
     },
     methods: {
-      deleteArticle(){}
+      deleteArticle() {
+      }
     },
     components: {
       appNavbar: Navbar
@@ -115,9 +118,6 @@
       },
       articles() {
         return JSON.parse(localStorage.getItem('articles'))
-      },
-      article() {
-
       }
     }
   }

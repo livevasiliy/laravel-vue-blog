@@ -7,8 +7,8 @@
       <router-view></router-view>
       <div class="row">
         <div class="col-12">
-          <h2>Edit Post</h2>
-          <form @submit.prevent="updatePost">
+          <h2>Add new post</h2>
+          <form @submit.prevent="addNewPost">
             <div class="form-group">
               <label for="title">Title:</label>
               <ckeditor :editor="editor" v-model="editorTitle" tag-name="input" class="form-control form-control-alternative" id="title" name="title"></ckeditor>
@@ -19,7 +19,7 @@
               <input type="hidden" id="body"/>
             </div>
             <router-link :to="{ name: 'Dashboard'}" class="btn btn-secondary">Back to Dashboard</router-link>
-            <button type="submit" class="btn btn-success">Update</button>
+            <button type="submit" class="btn btn-success">Add post</button>
           </form>
         </div>
       </div>
@@ -39,25 +39,18 @@
     data() {
       return {
         editor: ClassicEditor,
-        editorTitle: JSON.parse(localStorage.getItem('article')).map(x => x.title)[0],
-        editorContent: JSON.parse(localStorage.getItem('article')).map(x => x.body)[0],
+        editorTitle: '',
+        editorContent: '',
       }
     },
-    mounted() {
-      let single = JSON.parse(localStorage.getItem('articles')).filter(x => x.id === this.$route.params.postId).map(x => {
-        return {body: x.body, title: x.title};
-      });
-      localStorage.setItem('article', JSON.stringify(single));
-    },
     methods: {
-      async updatePost() {
+      async addNewPost() {
         await axios({
-          method: 'put',
-          url: '/api/articles/' + this.$route.params.postId,
+          method: 'post',
+          url: '/api/articles/',
           data: {
             title: this.editorTitle,
             body: this.editorContent,
-            token: localStorage.getItem('token')
           },
           headers: {
             Authorization: 'Bearer ' + localStorage.getItem('token')
@@ -67,8 +60,8 @@
           }
         }).then(response => {
           if (response.status === 200) {
-            this.$router.go(-1);
-            localStorage.removeItem('article');
+            localStorage.setItem('articles', response.data);
+            this.$router.push({ name: 'Dashboard'} );
           }
         }).catch(error => {
           console.log(error);
