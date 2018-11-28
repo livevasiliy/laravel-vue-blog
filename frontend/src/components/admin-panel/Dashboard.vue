@@ -52,7 +52,7 @@
                     <td>
                       <router-link
                         tag="a"
-                        :to="`/dashboard/post/${article.id}/edit`"
+                        :to="{ name: 'EditPost', params: {postId: article.id} }"
                         class="cursor btn btn-link"
                         exact
                         >
@@ -115,6 +115,9 @@
       },
       articles() {
         return JSON.parse(localStorage.getItem('articles'))
+      },
+      article() {
+
       }
     }
   }

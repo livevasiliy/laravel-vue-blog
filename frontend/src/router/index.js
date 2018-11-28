@@ -87,7 +87,7 @@ export default new Router({
       }
     },
     {
-      path: '/dashboard/post/:id/edit',
+      path: '/dashboard/post/:postId/edit',
       name: 'EditPost',
       component: EditPost,
       props: true

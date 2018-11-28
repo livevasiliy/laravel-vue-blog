@@ -29,16 +29,17 @@
   import Navbar from '../Navbar'
   import VueTrix from 'vue-trix'
   export default {
-    props: ['articleID'],
+
     name: "EditPost",
-    created() {
-      let single = JSON.parse(localStorage.getItem('articles')).filter(x => x.id === this.articleID).map(x => x.body);
-      console.log(single);
-    },
     data() {
       return {
-        editorContent: '',
+        editorContent: JSON.parse(localStorage.getItem('article')).toString(),
       }
+    },
+    mounted(){
+      console.log(this.$route.params);
+      let single = JSON.parse(localStorage.getItem('articles')).filter(x => x.id === this.$route.params.postId).map(x => x.body);
+      localStorage.setItem('article', JSON.stringify(single));
     },
     components: {
       appNavbar: Navbar,
