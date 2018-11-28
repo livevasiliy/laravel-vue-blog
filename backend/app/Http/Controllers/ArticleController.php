@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use App\Article;
 use Illuminate\Http\Request;
 use JWTAuth;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class ArticleController extends Controller
 {
@@ -71,10 +73,9 @@ class ArticleController extends Controller
             ], 400);
         }
 
-        $updated = $product->fill($request->all())
-            ->save();
+        $updated = $product->fill($request->all());
 
-        if ($updated) {
+        if ($updated->save()) {
             return response()->json([
                 'success' => true
             ]);
