@@ -11,7 +11,8 @@
           <form @submit.prevent="updatePost">
             <div class="form-group">
               <label for="title">Title:</label>
-              <ckeditor :editor="editor" v-model="editorTitle" tag-name="input" class="form-control form-control-alternative" id="title" name="title"></ckeditor>
+              <ckeditor :editor="editor" v-model="editorTitle" tag-name="input"
+                        class="form-control form-control-alternative" id="title" name="title"></ckeditor>
             </div>
             <div class="form-group">
               <label for="body">Body:</label>
@@ -68,7 +69,6 @@
         }).then(response => {
           if (response.status === 200) {
             this.$router.go(-1);
-            localStorage.removeItem('article');
           }
         }).catch(error => {
           console.log(error);

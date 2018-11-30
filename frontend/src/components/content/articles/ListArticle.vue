@@ -21,6 +21,7 @@
   import Article from './Article'
   import Pagination from '../../shared/Pagination'
   import Navbar from '../../Navbar'
+  import axios from 'axios'
 
   export default {
     name: "ListArticle",
@@ -29,40 +30,21 @@
       appPagination: Pagination,
       appNavbar: Navbar
     },
-    data() {
-      return {
-        articles: [
-          {
-            id: 1,
-            category: 'Developing',
-            title: 'How to make awesome project with Laravel + Vue.js',
-            body: 'This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.',
-            img: 'https://cdn-images-1.medium.com/max/2000/1*jFUgnkLTahkaBWSN8SLavg.png',
-            updated_at: '16.11.2018'
-          },
-          {
-            id: 2,
-            category: 'Developing',
-            title: 'How to make awesome project with Laravel + Vue.js',
-            body: 'This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.',
-            img: 'https://cdn-images-1.medium.com/max/2000/1*jFUgnkLTahkaBWSN8SLavg.png',
-            updated_at: '16.11.2018'
-          },
-          {
-            id: 3,
-            category: 'Developing',
-            title: 'How to make awesome project with Laravel + Vue.js',
-            body: 'This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.',
-            img: 'https://cdn-images-1.medium.com/max/2000/1*jFUgnkLTahkaBWSN8SLavg.png',
-            updated_at: '16.11.2018'
-          }
-        ]
-      }
+    mounted() {
+      axios.get('/api/articles', {
+        headers: {
+          Authorization: 'Bearer ' + localStorage.getItem('token')
+        }
+      }).then(response => {
+        localStorage.setItem('articles', JSON.stringify(response.data));
+      }).catch(error => {
+        throw error.message
+      });
     },
     computed: {
-      // articles() {
-      //   return this.$store.getters.articles;
-      // },
+      articles() {
+        return JSON.parse(localStorage.getItem('articles'))
+      },
       loading() {
         return this.$store.getters.loading;
       }

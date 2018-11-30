@@ -65,7 +65,7 @@
                         Edit
                       </span>
                       </router-link>
-                      <a @click="deleteArticle" class="cursor btn btn-link">
+                      <a @click="deleteArticle(article.id)" class="cursor btn btn-link">
                         <i class="fas fa-eraser fa-2x"></i>
                         Delete
                       </a>
@@ -95,7 +95,25 @@
       }
     },
     methods: {
-      deleteArticle() {
+      async deleteArticle(postId) {
+        await axios({
+          url: '/api/articles/' + postId,
+          method: 'delete',
+          headers: {
+            Authorization: 'Bearer ' + localStorage.getItem('token')
+          },
+          params: {
+            token: localStorage.getItem('token')
+          }
+        }).then(response => {
+          let single = JSON.parse(localStorage.getItem('articles'))
+            .filter(x => x.id === postId)
+            .slice(postId,1);
+          localStorage.setItem('article', JSON.stringify(single));
+          console.log(response.data)
+        }).catch(error => {
+          throw error.message
+        })
       }
     },
     components: {

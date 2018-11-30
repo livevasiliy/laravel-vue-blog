@@ -54,7 +54,7 @@ export default new Router({
       component: ListArticle
     },
     {
-      path: '/articles/:id/',
+      path: '/articles/:articleId/',
       name: 'DetailArticle',
       component: DetailArticle,
       props: true

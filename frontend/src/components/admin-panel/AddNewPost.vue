@@ -60,7 +60,10 @@
           }
         }).then(response => {
           if (response.status === 200) {
-            localStorage.setItem('articles', response.data);
+            let single = JSON.parse(localStorage.getItem('articles'))
+              .filter(x => x.id === this.$route.params.postId)
+              .slice(this.$route.params.postId,1);
+            localStorage.setItem('article', JSON.stringify(single));
             this.$router.push({ name: 'Dashboard'} );
           }
         }).catch(error => {

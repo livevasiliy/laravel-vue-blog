@@ -16,7 +16,7 @@
         <p class="card-text">{{ article.body }}</p>
       </div>
       <div class="card-footer">
-        <router-link tag="button" class="btn btn-success" :to="'/articles/' + article.id">Read</router-link>
+        <router-link tag="button" class="btn btn-success" :to="{ name: 'DetailArticle', params: {articleId: article.id } }">Read</router-link>
       </div>
     </div>
     <div v-else-if="!loading && articles.length === 0" class="alert alert-danger">
@@ -32,7 +32,12 @@
 <script>
   export default {
     props: ['articles', 'loading'],
-    name: "Article"
+    name: "Article",
+    data () {
+      return {
+        allArticles: this.articles
+      }
+    }
   }
 </script>
 
