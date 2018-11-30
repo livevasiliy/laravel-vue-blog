@@ -77,6 +77,17 @@
 
   export default {
     name: 'Home',
+    mounted() {
+      axios.get('/api/articles', {
+        headers: {
+          Authorization: 'Bearer ' + localStorage.getItem('token')
+        }
+      }).then(response => {
+        localStorage.setItem('articles', JSON.stringify(response.data));
+      }).catch(error => {
+        throw error.message
+      });
+    },
     data() {
       return {
         categories: [
@@ -101,32 +112,32 @@
             icon: '<i class="fab fa-laravel fa-2x mr-2" style="color: #e6533d;"></i>'
           }
         ],
-        lastedArticles: [
-          {
-            id: 1,
-            category: 'Developing',
-            title: 'How to make awesome project with Laravel + Vue.js',
-            body: 'This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.',
-            img: 'https://cdn-images-1.medium.com/max/2000/1*jFUgnkLTahkaBWSN8SLavg.png',
-            updated_at: '17.11.2018'
-          },
-          {
-            id: 2,
-            category: 'Developing',
-            title: 'How to make awesome project with Laravel + Vue.js',
-            body: 'This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.',
-            img: 'https://cdn-images-1.medium.com/max/2000/1*jFUgnkLTahkaBWSN8SLavg.png',
-            updated_at: '17.11.2018'
-          },
-          {
-            id: 3,
-            category: 'Developing',
-            title: 'How to make awesome project with Laravel + Vue.js',
-            body: 'This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.',
-            img: 'https://cdn-images-1.medium.com/max/2000/1*jFUgnkLTahkaBWSN8SLavg.png',
-            updated_at: '17.11.2018'
-          }
-        ]
+        // lastedArticles: [
+        //   {
+        //     id: 1,
+        //     category: 'Developing',
+        //     title: 'How to make awesome project with Laravel + Vue.js',
+        //     body: 'This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.',
+        //     img: 'https://cdn-images-1.medium.com/max/2000/1*jFUgnkLTahkaBWSN8SLavg.png',
+        //     updated_at: '17.11.2018'
+        //   },
+        //   {
+        //     id: 2,
+        //     category: 'Developing',
+        //     title: 'How to make awesome project with Laravel + Vue.js',
+        //     body: 'This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.',
+        //     img: 'https://cdn-images-1.medium.com/max/2000/1*jFUgnkLTahkaBWSN8SLavg.png',
+        //     updated_at: '17.11.2018'
+        //   },
+        //   {
+        //     id: 3,
+        //     category: 'Developing',
+        //     title: 'How to make awesome project with Laravel + Vue.js',
+        //     body: 'This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.',
+        //     img: 'https://cdn-images-1.medium.com/max/2000/1*jFUgnkLTahkaBWSN8SLavg.png',
+        //     updated_at: '17.11.2018'
+        //   }
+        // ]
       }
     },
     components: {
@@ -138,6 +149,9 @@
     computed: {
       loading() {
         return this.$store.getters.loading;
+      },
+      lastedArticles() {
+        return JSON.parse(localStorage.getItem('articles'));
       }
     }
   }
